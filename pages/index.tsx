@@ -16,6 +16,7 @@ const Home: NextPage = () => {
     { name: "Carlos", checked: false },
     { name: "Edu", checked: false },
     { name: "Gian", checked: false },
+    { name: "Gilvan", checked: false },
     { name: "Gui", checked: false },
     { name: "Guilherme", checked: false },
     { name: "João", checked: false },
