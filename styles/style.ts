@@ -21,6 +21,15 @@ export const CustomTextArea = styled(TextareaAutosize)`
   resize: none;
 `;
 
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  gap: 20px;
+`;
+
 export const CustomButton = styled(Button)`
   width: 150px;
   height: 37px;
@@ -52,6 +61,7 @@ export const RemoveButton = styled(Button)`
 
 export const ListContainer = styled.div`
   display: flex;
+  columns: 2;
   flex-direction: column;
   align-items: center;
   justify-content: center;

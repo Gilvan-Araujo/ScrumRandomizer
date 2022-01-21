@@ -124,62 +124,66 @@ const Home: NextPage = () => {
           </S.ListContainer>
         )}
 
-        <S.CustomButton
-          variant="contained"
-          onClick={() => {
-            const newListOfNames = [...listOfNames];
+        <S.Row>
+          <S.CustomButton
+            variant="contained"
+            onClick={() => {
+              const newListOfNames = [...listOfNames];
 
-            const listOfUncheckedNames = newListOfNames.filter(
-              (item) => !item.checked
-            );
+              const listOfUncheckedNames = newListOfNames.filter(
+                (item) => !item.checked
+              );
 
-            const randomIndex = Math.floor(
-              Math.random() * listOfUncheckedNames.length
-            );
+              const randomIndex = Math.floor(
+                Math.random() * listOfUncheckedNames.length
+              );
 
-            setRandomName(listOfUncheckedNames[randomIndex].name);
-          }}
-          onMouseEnter={() => {}}
-        >
-          Randomizar
-        </S.CustomButton>
+              setRandomName(listOfUncheckedNames[randomIndex].name);
+            }}
+            onMouseEnter={() => {}}
+          >
+            Randomizar
+          </S.CustomButton>
+
+          <S.CustomButton
+            variant="contained"
+            onClick={() => {
+              // make all checked as false
+              const newListOfNames = listOfNames.map((item) => ({
+                ...item,
+                checked: false,
+              }));
+              setListOfNames(newListOfNames);
+              setRandomName("");
+            }}
+          >
+            Resetar
+          </S.CustomButton>
+        </S.Row>
 
         {randomName}
 
-        <S.CustomButton
-          variant="contained"
-          onClick={() => {
-            // make all checked as false
-            const newListOfNames = listOfNames.map((item) => ({
-              ...item,
-              checked: false,
-            }));
-            setListOfNames(newListOfNames);
-            setRandomName("");
-          }}
-        >
-          Resetar
-        </S.CustomButton>
+        {/* <S.Row>
+          <S.CustomButton
+            variant="contained"
+            onClick={() => {
+              orderAlphabetically();
+            }}
+          >
+            Ordenar
+          </S.CustomButton>
 
-        <S.CustomButton
-          variant="contained"
-          onClick={() => {
-            orderAlphabetically();
-          }}
-        >
-          Ordenar
-        </S.CustomButton>
-
-        <S.CustomButton
-          variant="contained"
-          onClick={() => {
-            // clear all names
-            setListOfNames([]);
-            setRandomName("");
-          }}
-        >
-          Limpar
-        </S.CustomButton>
+          <S.CustomButton
+            variant="contained"
+            onClick={() => {
+              // clear all names
+              // setListOfNames([]);
+              setRandomName("");
+            }}
+          >
+            Limpar
+          </S.CustomButton>
+        </S.Row> */}
       </S.Container>
     </div>
   );
