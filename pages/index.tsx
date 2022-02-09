@@ -1,3 +1,4 @@
+import { Button, Checkbox, Input, Typography } from "@material-ui/core";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -26,7 +27,6 @@ const Home: NextPage = () => {
     { name: "Manoel", checked: false },
     { name: "Raposo", checked: false },
     { name: "Rodrigo", checked: false },
-    { name: "Valcinei", checked: false },
   ]);
 
   useEffect(() => {
@@ -40,20 +40,6 @@ const Home: NextPage = () => {
     localStorage.setItem("listOfNames", JSON.stringify(listOfNames));
   }, [listOfNames]);
 
-  const orderAlphabetically = () => {
-    setListOfNames(
-      listOfNames.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      })
-    );
-  };
-
   return (
     <div>
       <Head>
@@ -63,7 +49,7 @@ const Home: NextPage = () => {
       </Head>
 
       <S.Container>
-        <S.CustomTextArea
+        <Input
           aria-label="empty textarea"
           placeholder="Vazio"
           value={name}
@@ -81,7 +67,8 @@ const Home: NextPage = () => {
           }}
         />
 
-        <S.CustomButton
+        <Button
+          color="primary"
           variant="contained"
           onClick={() => {
             name !== "" &&
@@ -91,14 +78,15 @@ const Home: NextPage = () => {
           }}
         >
           Adicionar
-        </S.CustomButton>
+        </Button>
 
         {listOfNames.length > 0 && (
           <S.ListContainer>
             {listOfNames.map((item, index) => (
               <S.ListItem key={`${item.name}-${index}`}>
                 <div>
-                  <S.CustomCheckbox
+                  <Checkbox
+                    color="secondary"
                     checked={item.checked}
                     onChange={() => {
                       const newListOfNames = [...listOfNames];
@@ -111,7 +99,9 @@ const Home: NextPage = () => {
                   <S.CustomText>{item.name}</S.CustomText>
                 </div>
 
-                <S.RemoveButton
+                <Button
+                  variant="outlined"
+                  color="secondary"
                   onClick={() => {
                     const newListOfNames = [...listOfNames];
                     newListOfNames.splice(index, 1);
@@ -119,14 +109,15 @@ const Home: NextPage = () => {
                   }}
                 >
                   X
-                </S.RemoveButton>
+                </Button>
               </S.ListItem>
             ))}
           </S.ListContainer>
         )}
 
         <S.Row>
-          <S.CustomButton
+          <Button
+            color="primary"
             variant="contained"
             onClick={() => {
               const newListOfNames = [...listOfNames];
@@ -141,15 +132,14 @@ const Home: NextPage = () => {
 
               setRandomName(listOfUncheckedNames[randomIndex].name);
             }}
-            onMouseEnter={() => {}}
           >
             Randomizar
-          </S.CustomButton>
+          </Button>
 
-          <S.CustomButton
+          <Button
+            color="primary"
             variant="contained"
             onClick={() => {
-              // make all checked as false
               const newListOfNames = listOfNames.map((item) => ({
                 ...item,
                 checked: false,
@@ -159,32 +149,10 @@ const Home: NextPage = () => {
             }}
           >
             Resetar
-          </S.CustomButton>
+          </Button>
         </S.Row>
 
-        {randomName}
-
-        {/* <S.Row>
-          <S.CustomButton
-            variant="contained"
-            onClick={() => {
-              orderAlphabetically();
-            }}
-          >
-            Ordenar
-          </S.CustomButton>
-
-          <S.CustomButton
-            variant="contained"
-            onClick={() => {
-              // clear all names
-              // setListOfNames([]);
-              setRandomName("");
-            }}
-          >
-            Limpar
-          </S.CustomButton>
-        </S.Row> */}
+        <Typography>{randomName}</Typography>
       </S.Container>
     </div>
   );
