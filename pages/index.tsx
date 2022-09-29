@@ -13,8 +13,8 @@ const Home: NextPage = () => {
   const [name, setName] = useState("");
   const [randomName, setRandomName] = useState("");
   const [listOfNames, setListOfNames] = useState<ListItemProps[]>([
-    { name: "Eudes", checked: false },
     { name: "Edu", checked: false },
+    { name: "Eudes", checked: false },
     { name: "Gui", checked: false },
     { name: "Jhonatã", checked: false },
     { name: "Lucas", checked: false },
