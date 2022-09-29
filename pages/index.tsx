@@ -13,26 +13,29 @@ const Home: NextPage = () => {
   const [name, setName] = useState("");
   const [randomName, setRandomName] = useState("");
   const [listOfNames, setListOfNames] = useState<ListItemProps[]>([
-    { name: "Ally", checked: false },
-    { name: "Carlos", checked: false },
+    { name: "Eudes", checked: false },
     { name: "Edu", checked: false },
-    { name: "Gian", checked: false },
-    { name: "Gilvan", checked: false },
     { name: "Gui", checked: false },
-    { name: "Guilherme", checked: false },
-    { name: "João", checked: false },
-    { name: "Jordan", checked: false },
-    { name: "Jorge", checked: false },
-    { name: "Leo", checked: false },
-    { name: "Manoel", checked: false },
-    { name: "Raposo", checked: false },
-    { name: "Rodrigo", checked: false },
+    { name: "Jhonatã", checked: false },
+    { name: "Lucas", checked: false },
+    { name: "Victor", checked: false },
   ]);
 
   useEffect(() => {
     const localStorageList = localStorage.getItem("listOfNames");
+
     if (localStorageList) {
-      setListOfNames(JSON.parse(localStorageList));
+      const parsedList = JSON.parse(localStorageList);
+
+      const sortedList = parsedList.sort(
+        (a: { name: number }, b: { name: number }) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        }
+      );
+
+      setListOfNames(sortedList);
     }
   }, []);
 
